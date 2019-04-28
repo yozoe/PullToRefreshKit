@@ -36,7 +36,7 @@ public enum HeaderRefresherState {
 }
 
 public extension UIScrollView{
-    @objc public func invalidateRefreshControls(){
+    @objc func invalidateRefreshControls(){
         let tags = [PullToRefreshKitConst.headerTag,
                     PullToRefreshKitConst.footerTag,
                     PullToRefreshKitConst.leftTag,
@@ -46,7 +46,7 @@ public extension UIScrollView{
             oldContain?.removeFromSuperview()
         }
     }
-    @objc func configAssociatedObject(object:AnyObject){
+    func configAssociatedObject(object:AnyObject){
         guard objc_getAssociatedObject(object, &AssociatedObject.key) == nil else{
             return;
         }
@@ -64,7 +64,7 @@ struct AssociatedObject {
 
 public extension UIScrollView{
     
-    @objc public func configRefreshHeader(with refrehser:UIView & RefreshableHeader = DefaultRefreshHeader.header(),
+    @objc func configRefreshHeader(with refrehser:UIView & RefreshableHeader = DefaultRefreshHeader.header(),
                                     container object: AnyObject,
                                     action:@escaping ()->()){
         let oldContain = self.viewWithTag(PullToRefreshKitConst.headerTag)
@@ -86,7 +86,7 @@ public extension UIScrollView{
         configAssociatedObject(object: object)
     }
     
-    @objc public func switchRefreshHeader(to state:HeaderRefresherState){
+    func switchRefreshHeader(to state:HeaderRefresherState){
         let header = self.viewWithTag(PullToRefreshKitConst.headerTag) as? RefreshHeaderContainer
         switch state {
         case .refreshing:
@@ -112,7 +112,7 @@ public enum FooterRefresherState {
 public extension UIScrollView{
     
     /// Whether footer should stay at the bottom of tableView when cells count is small.
-    @objc public var footerAlwaysAtBottom:Bool{
+    @objc var footerAlwaysAtBottom:Bool{
         get{
             let object = objc_getAssociatedObject(self, &AssociatedObject.footerBottomKey)
             guard let number = object as? NSNumber else {
@@ -128,7 +128,7 @@ public extension UIScrollView{
             footerContainer.handleContentSizeChange(nil)
         }
     }
-    @objc public func configRefreshFooter(with refrehser:UIView & RefreshableFooter = DefaultRefreshFooter.footer(),
+    @objc func configRefreshFooter(with refrehser:UIView & RefreshableFooter = DefaultRefreshFooter.footer(),
                                     container object: AnyObject,
                                     action:@escaping ()->()){
         let oldContain = self.viewWithTag(PullToRefreshKitConst.footerTag)
@@ -144,7 +144,7 @@ public extension UIScrollView{
         configAssociatedObject(object: object)
     }
     
-    @objc public func switchRefreshFooter(to state:FooterRefresherState){
+    func switchRefreshFooter(to state:FooterRefresherState){
         let footer = self.viewWithTag(PullToRefreshKitConst.footerTag) as? RefreshFooterContainer
         switch state {
         case .refreshing:
@@ -169,7 +169,7 @@ public enum SideRefreshDestination {
 }
 
 public extension UIScrollView{
-    @objc public func configSideRefresh(with refrehser:UIView & RefreshableLeftRight,
+    func configSideRefresh(with refrehser:UIView & RefreshableLeftRight,
                                   container object: AnyObject,
                                   at destination:SideRefreshDestination,
                                   action:@escaping ()->()){
@@ -209,7 +209,7 @@ public extension UIScrollView{
         configAssociatedObject(object: object)
     }
     
-    @objc public func removeSideRefresh(at destination:SideRefreshDestination){
+    func removeSideRefresh(at destination:SideRefreshDestination){
         switch destination {
         case .left:
             let oldContain = self.viewWithTag(PullToRefreshKitConst.leftTag)
