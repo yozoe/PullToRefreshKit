@@ -17,7 +17,7 @@ This is a pull to refresh library written by pure Swift 4. Using it you can add 
   s.homepage         = 'https://github.com/LeoMobileDeveloper/PullToRefreshKit'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Leo' => 'leomobiledeveloper@gmail.com' }
-  s.source           = { :git => 'https://github.com/LeoMobileDeveloper/PullToRefreshKit.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/yozoe/PullToRefreshKit', :tag => s.version.to_s }
   s.ios.deployment_target = '8.0'
   s.source_files = 'Source/Classes/**/*'
   s.resources    = 'Source/Assets/**/*'
